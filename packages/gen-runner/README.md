@@ -3,7 +3,12 @@ gen-runner
 
 A generator runner
 
-## Usage
+## API
+```js
+run(fn*: GeneratorFunction): Promise<any>
+```
+
+## Examples
 ```js
 const run = require('gen-runner');
 

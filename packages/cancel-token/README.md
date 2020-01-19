@@ -3,7 +3,19 @@ CancelToken
 
 cancel a promise by `CancelToken`.
 
-## Usage
+## API
+```js
+new CancelToken(executor: (cancel: Function) => void);
+```
+```js
+interface ITokenSource { 
+  token: CancelToken;
+  cancel: Function;
+} 
+CancelToken.source(): ITokenSource
+```
+
+## Examples
 ```js
 const CancelToken = require('cancel-token');
 

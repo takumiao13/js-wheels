@@ -35,6 +35,6 @@ setTimeout(() => console.log(x));
 // => [1,4,9,16]
 ```
 
-## Resources
-- [asap](https://github.com/kriskowal/asap)
+## Reference
+- [kriskowal/asap](https://github.com/kriskowal/asap) - High-priority task queue for Node.js and browsers.
 - [rsvp](https://github.com/tildeio/rsvp.js/blob/5fa26506c6b084b5d1db6735852f887620e2cc37/lib/rsvp/asap.js#L3-L13)

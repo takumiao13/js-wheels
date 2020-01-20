@@ -35,5 +35,5 @@ var cancel = jsonp('http://foo/jsonp?foo=1&bar=2&callback=?', function() {
 cancel();
 ```
 
-## References
+## Reference
 - [webmodules/jsonp](https://github.com/webmodules/jsonp) - A simple JSONP implementation.

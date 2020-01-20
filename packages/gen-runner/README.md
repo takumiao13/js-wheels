@@ -29,5 +29,5 @@ function* sum(n) {
 run(sum, 10).then(console.log); // => 28
 ```
 
-## Resources
-- [co](https://github.com/tj/co)
+## Reference
+- [tj/co](https://github.com/tj/co) - The ultimate generator based flow-control goodness for nodejs.

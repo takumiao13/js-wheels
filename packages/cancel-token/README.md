@@ -72,7 +72,7 @@ document.getElementById('button')
   .addEventListener('click', () => source.cancel('Cancel Request'));
 ```
 
-## Resources
+## Reference
 - [proposal-cancelable-promises](https://github.com/tc39/proposal-cancelable-promises)
-- [axois - CancelToken](https://github.com/axios/axios)
+- [axios/axois - CancelToken](https://github.com/axios/axios)
 - [Promise Cancellation Is Dead — Long Live Promise Cancellation!](https://medium.com/@benlesh/promise-cancellation-is-dead-long-live-promise-cancellation-c6601f1f5082)

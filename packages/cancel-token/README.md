@@ -1,7 +1,7 @@
 CancelToken
 ===========
 
-cancel a promise by `CancelToken`.
+Cancel a promise by `CancelToken`.
 
 ## API
 ```js

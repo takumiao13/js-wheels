@@ -13,6 +13,7 @@ Reinventing some javascript wheels, just for studying :)
 - [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 - [EventEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/event-emitter) - A simple event emitter.
 - [asyncEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/async-emitter) - asyncify `EventEmitter`.
+- [vdom](https://github.com/takumiao13/js-wheels/tree/master/packages/vdom) - A simple virtual DOM implementation.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 
 

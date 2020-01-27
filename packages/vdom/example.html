@@ -1,0 +1,58 @@
+
+<div id="app"></div>
+<script src="./index.js"></script>
+<script>
+
+let vnode;
+let nextKey = 2;
+let data = [
+  { key: 0, text: 'item-0' },
+  { key: 1, text: 'item-1' }  
+];
+
+const appView = ({ children }) => h('app', {}, [
+  h('h1', {}, 'App'),
+  ...children,
+  h('hr'),
+  h('button', {
+    type: 'button',
+    onClick: addItem
+  }, 'add'),
+  h('button', {
+    type: 'button',
+    onClick: reverseList
+  }, 'reverse'),
+  h('button', {
+    type: 'button',
+    onClick: clearList
+  }, 'clear')
+]);
+
+const listView = ({ list }) => h('ul', {}, 
+  list.map(item => h('li', { key: item.key }, item.text))
+);
+
+const render = (container) => {
+  vnode = patch(vnode || container, appView({
+    children: [ listView({ list: data }) ]
+  }))
+}
+
+render(document.getElementById('app'));
+
+function addItem() {
+  data = data.concat({ key: nextKey, text: `item-${nextKey}` });
+  nextKey++;
+  render();
+}
+
+function reverseList() {
+  data = [].slice.call(data).reverse();
+  render();
+}
+
+function clearList() {
+  data.length = 0;
+  render();
+}
+</script>

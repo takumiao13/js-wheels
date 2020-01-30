@@ -12,8 +12,9 @@ Reinventing some javascript wheels, just for studying :)
 - [CancelToken](https://github.com/takumiao13/js-wheels/tree/master/packages/cancel-token) - Cancel a promise by `CancelToken`.
 - [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 - [EventEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/event-emitter) - A simple event emitter.
-- [asyncEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/async-emitter) - asyncify `EventEmitter`.
+- [asyncEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/async-emitter) - Asyncify `EventEmitter`.
 - [vdom](https://github.com/takumiao13/js-wheels/tree/master/packages/vdom) - A simple virtual DOM implementation.
+- [HTMLParser](https://github.com/takumiao13/js-wheels/tree/master/packages/htmlparser) - A simple HTML Parser.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 
 

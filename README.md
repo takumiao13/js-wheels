@@ -15,6 +15,7 @@ Reinventing some javascript wheels, just for studying :)
 - [asyncEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/async-emitter) - Asyncify `EventEmitter`.
 - [vdom](https://github.com/takumiao13/js-wheels/tree/master/packages/vdom) - A simple virtual DOM implementation.
 - [HTMLParser](https://github.com/takumiao13/js-wheels/tree/master/packages/htmlparser) - A simple HTML Parser.
+- [observable](https://github.com/takumiao13/js-wheels/tree/master/packages/observable) - Observe the changes of object.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 
 

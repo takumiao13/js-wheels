@@ -23,7 +23,7 @@ Reinventing some javascript wheels, just for studying :)
 - [cookies](https://github.com/takumiao13/js-wheels/tree/master/packages/cookies) - JS API for handling cookies.
 - [Storage](https://github.com/takumiao13/js-wheels/tree/master/packages/storage) - A better `localStorage`.
 - [dataCache](https://github.com/takumiao13/js-wheels/tree/master/packages/data-cache) - setter/getter arbitrary data associated with the specified element, like [jQuery.data()](https://api.jquery.com/jQuery.data/).
-
+- [utils](https://github.com/takumiao13/js-wheels/tree/master/packages/utils) - JS utilities.
 
 ## License
 

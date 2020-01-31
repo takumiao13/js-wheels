@@ -18,6 +18,8 @@ Reinventing some javascript wheels, just for studying :)
 - [observable](https://github.com/takumiao13/js-wheels/tree/master/packages/observable) - Observe the changes of object.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 - [Router](https://github.com/takumiao13/js-wheels/tree/master/packages/router) - A simple routes for JS.
+- [JST](https://github.com/takumiao13/js-wheels/tree/master/packages/jst) - A JavaScript template engine.
+
 
 ## License
 

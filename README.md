@@ -10,7 +10,6 @@ Reinventing some javascript wheels, just for studying :)
 - [thunkify](https://github.com/takumiao13/js-wheels/tree/master/packages/thunkify) - A thunkify implementation.
 - [Promise](https://github.com/takumiao13/js-wheels/tree/master/packages/promise) - A simple Promises/A+ implementation
 - [CancelToken](https://github.com/takumiao13/js-wheels/tree/master/packages/cancel-token) - Cancel a promise by `CancelToken`.
-- [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 - [EventEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/event-emitter) - A simple event emitter.
 - [asyncEmitter](https://github.com/takumiao13/js-wheels/tree/master/packages/async-emitter) - Asyncify `EventEmitter`.
 - [vdom](https://github.com/takumiao13/js-wheels/tree/master/packages/vdom) - A simple virtual DOM implementation.
@@ -20,6 +19,8 @@ Reinventing some javascript wheels, just for studying :)
 - [Router](https://github.com/takumiao13/js-wheels/tree/master/packages/router) - A simple routes for JS.
 - [JST](https://github.com/takumiao13/js-wheels/tree/master/packages/jst) - A JavaScript template engine.
 - [cookies](https://github.com/takumiao13/js-wheels/tree/master/packages/cookies) - JS API for handling cookies.
+- [ajax](https://github.com/takumiao13/js-wheels/tree/master/packages/ajax) - JS API for handleing XHR.
+- [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 
 ## License
 

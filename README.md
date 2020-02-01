@@ -21,6 +21,7 @@ Reinventing some javascript wheels, just for studying :)
 - [cookies](https://github.com/takumiao13/js-wheels/tree/master/packages/cookies) - JS API for handling cookies.
 - [ajax](https://github.com/takumiao13/js-wheels/tree/master/packages/ajax) - JS API for handleing XHR.
 - [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
+- [Storage](https://github.com/takumiao13/js-wheels/tree/master/packages/storage) - A better `localStorage`.
 
 ## License
 

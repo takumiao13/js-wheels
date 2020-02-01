@@ -1,0 +1,40 @@
+<script src="./index.js"></script>
+
+<script>
+var storage = Storage({ prefix: 'app' });
+storage.set('string', 'foo', 1);
+storage.set('number', 13);
+storage.set('boolean', true);
+storage.set('object', { name: 'taku', age: 13 });
+storage.set('array', [1,2,3,4]);
+storage.set('date', new Date);
+
+console.log(storage.keys());
+console.log(storage.size());
+console.log(storage.has('array'));
+
+console.log('---');
+
+console.log(storage.get('number'));
+console.log(storage.get('boolean'));
+console.log(storage.get('object'));
+console.log(storage.get('array'));
+
+console.log('---');
+
+setTimeout(_ => {
+  console.log(storage.get('string'));
+
+  console.log('---');
+
+  storage.remove('number');
+  storage.remove('boolean');
+  console.log(storage.keys());
+
+  console.log('---');
+
+  storage.clear();
+  console.log(storage.keys())
+
+}, 1000);
+</script>

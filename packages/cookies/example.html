@@ -1,0 +1,31 @@
+<script src="./index.js"></script>
+<script>
+cookies.set('name', 'value');
+cookies.set('boolean', true, {
+  expires: 7 // days of expires
+});
+cookies.set('number', 13, {
+  path: '' // current url
+});
+cookies.set('object', { name: 'Bob', age: 13 });
+cookies.set('https', true, {
+  secure: true
+});
+
+cookies.get('name'); //=> value
+cookies.get('boolean'); //=> true
+cookies.get('object'); //=> { name: 'Bob', age: 13 }
+
+cookies.remove('boolean');
+cookies.get('boolean'); //=> null
+
+cookies.remove('number');
+cookies.get('number'); //=> 13 remove failed
+
+cookies.remove('number', {
+  path: '' // should specify path
+})
+cookies.get('number'); //=> null remove success
+
+cookies.get('https');
+</script>

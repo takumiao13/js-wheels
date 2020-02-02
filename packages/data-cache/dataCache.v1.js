@@ -1,0 +1,53 @@
+// Simple Version
+const mapData = (() => {
+  const storeData = {};
+  let id = 1;
+
+  return {
+    set(element, key, data) {
+      if (typeof element.key === 'undefined') {
+        element.key = { key, id };
+        id++;
+      }
+
+      storeData[element.key.id] = data;
+    },
+    get(element, key) {
+      if (!element || typeof element.key === 'undefined') {
+        return null;
+      }
+
+      const keyProperties = element.key
+      if (keyProperties.key === key) {
+        return storeData[keyProperties.id];
+      }
+
+      return null;
+    },
+    delete(element, key) {
+      if (typeof element.key === 'undefined') {
+        return
+      }
+
+      const keyProperties = element.key;
+      if (keyProperties.key === key) {
+        delete storeData[keyProperties.id];
+        delete element.key;
+      }
+    }
+  }
+})();
+
+const dataCache = {
+  setData(instance, key, data) {
+    mapData.set(instance, key, data);
+  },
+  getData(instance, key) {
+    return mapData.get(instance, key);
+  },
+  removeData(instance, key) {
+    mapData.delete(instance, key);
+  }
+}
+
+export default dataCache;

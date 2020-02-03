@@ -1,0 +1,9 @@
+<script src="./index.js"></script>
+<script>
+var str = querystring.stringify({ foo: '中', bar: '文' });
+var ret = querystring.parse(str); // => { foo: '中', bar: '文' }
+console.log(ret);
+
+ret = querystring.parse('foo=1&bar=2&bar=3&bar=4');
+console.log(ret);
+</script>

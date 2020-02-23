@@ -1,6 +1,6 @@
 querystring
 ===========
-Qarsing and formatting URL query strings for Browser.
+Parsing and formatting URL query strings for Browser.
 
 ## Examples
 ```js

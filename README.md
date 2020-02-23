@@ -15,6 +15,7 @@ Reinventing some javascript wheels, just for studying :)
 - [vdom](https://github.com/takumiao13/js-wheels/tree/master/packages/vdom) - A simple virtual DOM implementation.
 - [HTMLParser](https://github.com/takumiao13/js-wheels/tree/master/packages/htmlparser) - A simple HTML Parser.
 - [observable](https://github.com/takumiao13/js-wheels/tree/master/packages/observable) - Observe the changes of object.
+- [redux](https://github.com/takumiao13/js-wheels/tree/master/packages/redux) - A simple redux.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 - [Router](https://github.com/takumiao13/js-wheels/tree/master/packages/router) - A simple routes for JS.
 - [querystring](https://github.com/takumiao13/js-wheels/tree/master/packages/querystring) - Parsing and formatting URL query strings for Browser.

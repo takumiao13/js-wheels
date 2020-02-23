@@ -18,5 +18,3 @@ router.route('/download/*file', function(file) {
 // stop listening
 router.stop();
 ```
-
-## Reference

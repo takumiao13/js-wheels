@@ -1,7 +1,21 @@
-function jsonp(url, fn, timeout) {
+
+var defaults = {
+  timeout: 60000,
+  callback: 'callback',
+  prefix: 'jsonp_'
+};
+
+function jsonp(url, options, fn) {
+  if (typeof options === 'function') {
+    fn = options;
+    options = {}
+  }
+
+  options = Object.assign({}, defaults, options || {});
+
   var target = document.getElementsByTagName('script')[0] || document.head;
   var script = document.createElement('script');
-  var timeout = timeout || 60000;
+  var timeout = options.timeout;
 
   if (timeout) {
     timer = setTimeout(function(){
@@ -12,7 +26,8 @@ function jsonp(url, fn, timeout) {
   }
 
   // define jsonp-callback and attach to window
-  var id = 'jsonp_' + (+new Date);
+  var prefix = options.prefix;
+  var id = prefix + (+new Date);
   window[id] = function(data){
     cleanup();
     if (fn) fn(null, data);
@@ -20,14 +35,26 @@ function jsonp(url, fn, timeout) {
 
   // replace `?` to jsonp-callback name
   // and server can get callback name by `callback` queryParams
-  url = url.replace('callback=?', 'callback=' + id);
-  script.src = url;
+  var callbackName = options.callback;
+  script.src = url.replace(callbackName + '=?', callbackName + '=' + id);
   target.parentNode.insertBefore(script, target);
+
+  // caught if got 404/500
+  script.onerror = function() {
+    cleanup();
+    if (fn) fn(new Error('JSONP request to ' + url + ' failed'));
+  };
 
   // remove script and jsonp-callback
   function cleanup() {
     if (script.parentNode) script.parentNode.removeChild(script);
-    window[id] = function() {};
+
+    try {
+      delete window[id];
+    } catch (e) {
+      window[id] = undefined;
+    }
+    
     if (timer) clearTimeout(timer);
   }
 
@@ -40,3 +67,5 @@ function jsonp(url, fn, timeout) {
 
   return cancel;
 }
+
+jsonp.defaults = defaults;

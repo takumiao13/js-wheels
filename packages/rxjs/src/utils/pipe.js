@@ -1,6 +1,4 @@
-exports.pipe = (...fns) => pipeFromArray(fns);
-
-exports.pipeFromArray = (fns) => {
+exports.pipe = (...fns) => {
   if (!fns) return function() {}
 
   if (fns.length === 1) return fns[0];

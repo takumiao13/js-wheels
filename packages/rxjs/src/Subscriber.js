@@ -51,21 +51,39 @@ Subscription.EMPTY = (function(empty) {
   return empty;
 }(new Subscription()))
 
-// Subscriber
-// ==
 
 /**
+ * Subscriber
+ * 
+ * @example
+ * new Subscriber(next, error, complete)
+ * // or
+ * new Subscriber({
+ *  next: () => {},
+ *  error: () => {},
+ *  complete: () => {}
+ * })
  * 
  * @param {Function} next 
  * @param {Function} error 
  * @param {Function} complete 
  */
-const Subscriber = function(next, error, complete) {
+const Subscriber = function(destOrNext, error, complete) {
   Subscription.call(this);
+  this.dest = null;
   this.isStopped = false;
-  this._next = next;
-  this._error = error;
-  this._complete = complete;
+
+  if (typeof destOrNext === 'object') {
+    if (destOrNext instanceof Subscriber) {
+      this.dest = destOrNext;
+    } else {
+      // create a safe subscriber
+      this.dest = new SafeSubscriber(destOrNext);
+    }
+  } else if (typeof destOrNext === 'function') {
+    this.dest = new SafeSubscriber(destOrNext, error, complete);
+  }
+
   this._super_ = Subscription.prototype;
 };
 
@@ -73,22 +91,34 @@ Object.setPrototypeOf(Subscriber.prototype, Subscription.prototype);
 
 Subscriber.prototype.next = function(value) {
   if (!this.isStopped) {
-    this._next && this._next(value);
+    this._next(value);
   }
 }
 
 Subscriber.prototype.error = function(err) {
   if (!this.isStopped) {
     this.isStopped = true;
-    this._error && this._error(err);
+    this._error(value);
   }
 }
 
 Subscriber.prototype.complete = function() {
   if (!this.isStopped) {
     this.isStopped = true;
-    this._complete && this._complete();
+    this._complete();
   }
+}
+
+Subscriber.prototype._next = function(value) {
+  this.dest.next(value);
+}
+
+Subscriber.prototype._error = function(err) {
+  this.dest.error(err);
+}
+
+Subscriber.prototype._complete = function() {
+  this.dest.complete();
 }
 
 Subscriber.prototype.unsubscribe = function() {
@@ -96,4 +126,46 @@ Subscriber.prototype.unsubscribe = function() {
   this._super_.unsubscribe.call(this);
 }
 
-module.exports = Subscriber;
+exports.Subscriber = Subscriber;
+
+
+// SafeSubscriber
+// ==
+const SafeSubscriber = function(observerOrNext, error, complete) {
+  let next;
+  if (typeof observerOrNext === 'function') {
+    next = observerOrNext;
+  } else {
+    next = observerOrNext.next;
+    error = observerOrNext.error;
+    complete = observerOrNext.complete;
+  }
+
+  this._next = next;
+  this._error = error;
+  this._complete = complete;
+  
+  this._super_ = Subscription.prototype;
+};
+
+Object.setPrototypeOf(SafeSubscriber.prototype, Subscriber.prototype);
+
+SafeSubscriber.prototype.next = function(value) {
+  if (!this.isStopped) {
+    this._next && this._next(value);
+  }
+}
+
+SafeSubscriber.prototype.error = function(err) {
+  if (!this.isStopped) {
+    this.isStopped = true;
+    this._error && this._error(err);
+  }
+}
+
+SafeSubscriber.prototype.complete = function() {
+  if (!this.isStopped) {
+    this.isStopped = true;
+    this._complete && this._complete();
+  }
+}

@@ -17,6 +17,7 @@ Reinventing some javascript wheels, just for studying :)
 - [observable](https://github.com/takumiao13/js-wheels/tree/master/packages/observable) - Observe the changes of object.
 - [redux](https://github.com/takumiao13/js-wheels/tree/master/packages/redux) - A simple redux.
 - [rxjs](https://github.com/takumiao13/js-wheels/tree/master/packages/rxjs) - A simple rxjs.
+- [amd](https://github.com/takumiao13/js-wheels/tree/master/packages/amd) - A simple AMD implementation for all bundled js.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
 - [Router](https://github.com/takumiao13/js-wheels/tree/master/packages/router) - A simple routes for JS.
 - [querystring](https://github.com/takumiao13/js-wheels/tree/master/packages/querystring) - Parsing and formatting URL query strings for Browser.

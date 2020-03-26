@@ -31,10 +31,11 @@ collect value before next event loop
 const arr = [];
 
 [1,2,3,4].forEach(v => asap(_ => arr.push(v*v)));
-setTimeout(() => console.log(x));
+setTimeout(() => console.log(arr));
 // => [1,4,9,16]
 ```
 
 ## Reference
 - [kriskowal/asap](https://github.com/kriskowal/asap) - High-priority task queue for Node.js and browsers.
-- [rsvp](https://github.com/tildeio/rsvp.js/blob/5fa26506c6b084b5d1db6735852f887620e2cc37/lib/rsvp/asap.js#L3-L13)
+- [tildeio/rsvp](https://github.com/tildeio/rsvp.js/blob/5fa26506c6b084b5d1db6735852f887620e2cc37/lib/rsvp/asap.js#L3-L13)
+- [vuejs/vue](https://github.com/vuejs/vue/blob/dev/src/core/util/next-tick.js)

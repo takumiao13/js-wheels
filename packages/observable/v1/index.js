@@ -1,4 +1,4 @@
-var asap = require('../asap');
+var asap = require('../../asap');
 
 // CONSTANTS
 // ==

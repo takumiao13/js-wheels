@@ -1,3 +1,5 @@
 
 const { observe } = require('./Observer');
-module.exports = observe;
+module.exports = {
+  observe
+}

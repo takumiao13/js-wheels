@@ -1,6 +1,7 @@
 let uid = 0;
 
-function Dep() {
+function Dep(key) {
+  this.key = key // the key for Dep
   this.id = uid++;
   this.subs = []; // store watchers
 }

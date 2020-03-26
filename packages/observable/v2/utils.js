@@ -48,6 +48,8 @@ exports.arrayMethods = arrayMethods;
 
 exports.isArray = Array.isArray;
 
+exports.isObject = (val) => !!val && typeof val === 'object' || typeof val === 'function'; 
+
 const rePropName = /[^.\[\]]+/g;
 
 function stringToPath(str) {
@@ -71,3 +73,6 @@ exports.parsePath = function(expr) {
     return length ? object : void 0;
   }
 }
+
+
+exports.noop = function() {}

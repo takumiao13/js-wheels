@@ -29,9 +29,9 @@ var user = observable({
 });
 
 
-user.$watch('age', function(newVal, oldVala) { /* */ })
-user.$watch('address.city', function(newVal, oldVala) { /* */ });
-var unwatch = user.$watch('address', function(newVal, oldVala) { /* */ }, true);
+user.$watch('age', function(newVal, oldVal) { /* */ })
+user.$watch('address.city', function(newVal, oldVal) { /* */ });
+var unwatch = user.$watch('address', function(newVal, oldVal) { /* */ }, true);
 ```
 
 ## API
@@ -50,6 +50,7 @@ Observer.prototype.$unset(key: string): void;
 ```
 
 ## Reference
-- [cnlon/smart-observe](https://github.com/cnlon/smart-observe)
 - [dntzhang/oba](https://github.com/dntzhang/oba)
 - [melanke/Watch.JS](https://github.com/melanke/Watch.JS)
+- [vuejs/vue - observer](https://github.com/vuejs/vue/tree/dev/src/core/observer)
+- [cnlon/smart-observe](https://github.com/cnlon/smart-observe)

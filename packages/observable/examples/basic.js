@@ -1,16 +1,35 @@
-
-const observe = require('../v2');
+const { observe } = require('../v2');
 
 const ob = observe({
-  name: 'taku',
-  age: 13
+  firstName: 'Taku',
+  lastName: 'Miao',
+  age: 13,
+  address: {
+    country: 'China',
+    city: 'SH'
+  }
 });
 
-ob.$watch('name', function _watchName(val) {
-  console.log(val);
+ob.$compute({
+  // computed getter
+  get fullName() {
+    return this.firstName + '-' + this.lastName; 
+  },
+
+  // computed setter
+  set fullName(val) {
+    var [ firstName, lastName ] = val.split('-')
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 });
 
+ob.$watch('firstName', function(val) {
+  console.log('firstName', val);
+});
 
-ob.name = 'x';
-ob.name = 'y';
-ob.name = 'z';
+ob.$watch('fullName', function(val, oldval) {
+  console.log('fullName', val, oldval);
+});
+
+ob.fullName = 'abc-xyz';

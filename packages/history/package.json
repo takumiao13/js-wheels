@@ -1,0 +1,14 @@
+{
+  "name": "history",
+  "version": "0.0.0",
+  "description": "A cross-browser history",
+  "main": "src/main.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT"
+}

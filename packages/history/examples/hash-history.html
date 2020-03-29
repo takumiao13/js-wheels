@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Hash History</title>
+<script src="../dist/history.js"></script>
+</head>
+<body>
+
+<h1>Hash History</h1>
+
+<ul>
+  <li><a href="#/page-1?foo=1">page-1</a></li>
+  <li><a href="#page-2?bar=2">page-2</a></li>
+  <li><a href="#page-3?baz=3#anchor">page-3</a></li>
+</ul>
+
+<button id="forward">Forward</button>
+<button id="back">Back</button>
+<button id="push">Push('page-4')</button>
+
+<hr/>
+
+<button id="stop">STOP</button>
+
+<script>
+var byId = document.getElementById.bind(document);
+var hashHistory = createHistory({ mode: 'hash' });
+
+var unsubscribe = hashHistory.subscribe(function(e) {
+  console.log(e);
+});
+
+byId('forward').addEventListener('click', function() {
+  hashHistory.forward();
+}, false);
+
+byId('back').addEventListener('click', function() {
+  hashHistory.back();
+}, false);
+
+byId('push').addEventListener('click', function() {
+  hashHistory.push('/page-4?foo=2&baz=3#anchor2');
+}, false);
+
+byId('stop').addEventListener('click', function() {
+  unsubscribe();
+}, false);
+</script>
+</body>
+</html>

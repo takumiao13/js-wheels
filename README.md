@@ -19,6 +19,7 @@ Reinventing some javascript wheels, just for studying :)
 - [rxjs](https://github.com/takumiao13/js-wheels/tree/master/packages/rxjs) - A simple rxjs.
 - [amd](https://github.com/takumiao13/js-wheels/tree/master/packages/amd) - A simple AMD implementation for all bundled js.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
+- [History](https://github.com/takumiao13/js-wheels/tree/master/packages/history) - A cross-browser history.
 - [Router](https://github.com/takumiao13/js-wheels/tree/master/packages/router) - A simple routes for JS.
 - [querystring](https://github.com/takumiao13/js-wheels/tree/master/packages/querystring) - Parsing and formatting URL query strings for Browser.
 - [JST](https://github.com/takumiao13/js-wheels/tree/master/packages/jst) - A JavaScript template engine.

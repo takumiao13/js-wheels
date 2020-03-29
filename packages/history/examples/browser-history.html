@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>History</title>
+<script src="../dist/history.js"></script>
+<style>
+[data-link] {
+  color: -webkit-link;
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>
+  Browser History
+  <small>(http protocol)</small>
+</h1>
+
+<ul>
+  <li><a data-link="/page-1?foo=1">page-1</a></li>
+  <li><a data-link="page-2?bar=2">page-2</a></li>
+  <li><a data-link="page-3?baz=3#anchor">page-3</a></li>
+</ul>
+
+<button id="forward">Forward</button>
+<button id="back">Back</button>
+<button id="push">Push('page-4')</button>
+
+<hr/>
+
+<button id="stop">STOP</button>
+
+<script>
+var byId = document.getElementById.bind(document);
+var browserHistory = createHistory({ mode: 'browser' });
+
+var unsubscribe = browserHistory.subscribe(function(e) {
+  console.log(e);
+});
+
+var slice = [].slice;
+
+slice.call(document.querySelectorAll('[data-link]')).forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var url = e.target.dataset.link;
+    browserHistory.push(url)
+  }, false);
+})
+
+byId('forward').addEventListener('click', function() {
+  browserHistory.forward();
+}, false);
+
+byId('back').addEventListener('click', function() {
+  browserHistory.back();
+}, false);
+
+byId('push').addEventListener('click', function() {
+  browserHistory.push('/page-4?foo=2&baz=3#anchor2');
+}, false);
+
+byId('stop').addEventListener('click', function() {
+  unsubscribe();
+}, false);
+
+</script>
+</body>
+</html>

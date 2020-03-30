@@ -1,0 +1,11 @@
+{
+  "name": "ajax.js",
+  "version": "0.0.0",
+  "description": "JS API for handleing XHR.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT"
+}

@@ -49,7 +49,8 @@ abort XHR
 function request(url, token) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url);
-
+  xhr.send();
+  
   return new Promise((resolve, reject) => {
     xhr.onload = () => resolve(xhr.responseText);
     xhr.onerror = reject;

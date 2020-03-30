@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>CancelToken</title>
+<script src="../dist/ajax.js"></script>
+</head>
+<tbody>
+<script>
+var source = ajax.CancelToken.source();
+source.cancel('cancel it');
+
+setTimeout(_ => {
+  ajax('fake/path', { 
+    token: source.token 
+  }).then(console.log).catch(console.error);
+});
+</script>
+</tbody>
+</html>

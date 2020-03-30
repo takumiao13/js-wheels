@@ -32,6 +32,14 @@ ajax('./some/json', {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 });
+
+// cancel
+var source = ajax.CancelToken.source():
+source.cancel('cancel it');
+ajax('./some/json', {
+  token: source.token
+}).catch(console.error)
+// => {message: "cancel it", __CANCEL__: true}
 ```
 
 ## API
@@ -40,6 +48,7 @@ interface AjaxOptions {
   method: 'GET'|'POST'|'PUT'|'DELETE';
   body: string|FormData;
   headers: Object|null;
+  token: CancelToken
 }
 
 ajax(url: string, options?: AjaxOptions): Promise<any>

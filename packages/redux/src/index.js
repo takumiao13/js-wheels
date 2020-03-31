@@ -16,6 +16,9 @@ function createStore(reducer, initialState, enhancer) {
     listeners.push(listener)
   };
 
+  // init state tree.
+  dispatch({ type: '@@INIT' })
+
   return {
     getState,
     dispatch,

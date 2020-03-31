@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Router DOM</title>
+<script src="../dist/router.js"></script>
+</head>
+<body>
+
+<ul>
+  <li><a href="#/user/bob/post/1">/user/bob/post/1</a></li>
+  <li><a href="#/user/bob/post/2">/user/bob/post/2</a></li>
+  <li><a href="#/user/mike/post/3">/user/mike/post/3</a></li>
+  <li><a href="#/user/mike/post/4?foo=1&baz=2#anchor">/user/mike/post/4?foo=1&baz=2#anchor</a></li>
+</ul>
+
+<script>
+var routerDOM = new router.RouterDOM({ mode: 'hash' });
+
+routerDOM.route('/user/:name/post/:id', function(match) {
+  console.log(match);
+});
+
+var stop = routerDOM.start();
+</script>
+</body>
+</html>

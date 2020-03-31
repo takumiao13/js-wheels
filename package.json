@@ -24,5 +24,8 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "promises-aplus-tests": "^2.1.2",
     "rollup-plugin-babel": "^4.4.0"
+  },
+  "dependencies": {
+    "path-to-regexp": "^6.1.0"
   }
 }

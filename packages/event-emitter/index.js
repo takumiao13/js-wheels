@@ -11,17 +11,25 @@ EventEmitter.prototype.on = function(type, listener) {
   return this;
 }
 
+EventEmitter.prototype.once = function(type, listener) {
+  var self = this;
+  return this.on(type, function onceWrapper() {
+    var args = [].slice.call(arguments);
+    listener.apply(null, args);
+    self.off(type, onceWrapper);
+  });
+}
+
 EventEmitter.prototype.emit = function(type) {
   var args = [].slice.call(arguments, 1);
   var handler = this._events[type];
 
   if (!handler) return false;
 
-  // copy handler prevent infinity loop
-  var listeners = handler.slice();
   // loop listeners and invoke listener with given args
-  for (var i in listeners) {
-    listeners[i].apply(null, args);
+  var i, len = handler.length;
+  for (i = 0; i < len; i++) {
+    handler[i].apply(null, args);
   }
 
   return true;

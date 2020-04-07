@@ -24,6 +24,8 @@ ee.emit('foo', 'x', 'y');
 // Register an event handler for the given type.
 EventEmitter#on(type: string, listener: Function): this
 
+EventEmitter#once(type: string, listener: Function): this
+
 // Remove an event handler for the given type.
 EventEmitter#off(type: string, listener: Function): this
 

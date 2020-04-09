@@ -1,10 +1,11 @@
-function asap(fn) {
-  setTimeout(fn, 0);
-}
-
-var PENDING = 'PENDING';
-var FULFILLED = 'FULFILLED';
-var REJECTED = 'REJECTED';
+var { PENDING, FULFILLED, REJECTED } = require('./const').States; 
+var asap = require('./asap');
+var all = require('./static/all');
+var race = require('./static/race');
+var resolvePromise = require('./static/resolve');
+var rejectPromise = require('./static/reject');
+var then = require('./proto/then');
+var caught = require('./proto/catch');
 
 function MyPromise(executor) {
   var promise = this;
@@ -26,6 +27,7 @@ function MyPromise(executor) {
 
 module.exports = MyPromise;
 
+// internal methods
 function _resolve(promise, x) {
   var then, thenCalledOrThrow = false;
   if (x === promise) {
@@ -95,94 +97,10 @@ function _reject(promise, reason) {
   });
 }
 
-MyPromise.prototype.then = function(onFulfilled, onRejected) {
-  var promise = this, promise2;
-  onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : function(v) { return v };
-  onRejected = typeof onRejected === 'function' ? onRejected : function(r) { throw r };
-  promise2 = new MyPromise(function(resolve, reject) {
-    if (promise._state == PENDING) {
-      promise._onFulfilledCallback.push(function() {
-        try {
-          var x = onFulfilled(promise._value);
-          resolve(x);
-        } catch (e) {
-          reject(e);
-        }
-      })
-      promise._onRejectedCallback.push(function() {     
-        try {
-          var x = onRejected(promise._value);
-          resolve(x);
-        } catch (e) {
-          reject(e);
-        }
-      })
-    } else {
-      asap(function() {
-        try {
-          if (promise._state == FULFILLED) {
-            var x = onFulfilled(promise._value);
-          } else if (promise._state == REJECTED) {
-            var x = onRejected(promise._value);
-          }
-          resolve(x);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }
-  });
-  return promise2;
-};
+MyPromise.prototype.then = then;
+MyPromise.prototype.catch = caught;
 
-MyPromise.prototype.catch = function(onRejected) {
-  return this.then(null, onRejected);
-};
-
-MyPromise.prototype.spread = function(onFulfilled, onRejected) {
-  return this.then(function(results) {
-    return onFulfilled.apply(null, results);
-  }, onRejected);
-}
-
-MyPromise.prototype.sleep = function(time) {
-  return this.then(function(value) {
-    return new MyPromise(function(resolve, reject) {
-      setTimeout(function() { resolve(value) }, time);
-    });
-  }, function(err) {
-    return new MyPromise(function(resolve, reject) {
-      setTimeout(function() { reject(value) }, time);
-    });
-  })
-};
-
-MyPromise.race = function(entries) {
-  return new MyPromise(function (resolve, reject) {
-    var length = entries.length;
-    for (var i = 0; i < length; i++) {
-      MyPromise.resolve(entries[i]).then(resolve, reject);
-    }
-  });
-};
-
-MyPromise.all = function(entries) {
-  return new MyPromise(function(resolve, reject) {
-    var counter = 0
-    var length = entries.length;
-    var results = new Array(length)
-    for (var i = 0; i < length; i++) {
-      (function(i) {
-        MyPromise.resolve(entries[i]).then(function(value) {
-          counter++
-          results[i] = value
-          if (counter == length) {
-            return resolve(results)
-          }
-        }, function(reason) {
-          return reject(reason)
-        })
-      })(i)
-    }
-  })
-};
+MyPromise.all = all;
+MyPromise.race = race;
+MyPromise.resolve = resolvePromise;
+MyPromise.reject = rejectPromise;

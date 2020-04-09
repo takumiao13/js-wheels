@@ -1,4 +1,4 @@
-const { AsyncQueue } = require('../dist/async-queue');
+const { AsyncQueue } = require('../../dist/async-queue-v2');
 
 const asyncQueue = new AsyncQueue({
   concurrency: 2

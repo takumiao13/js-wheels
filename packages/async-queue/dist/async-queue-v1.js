@@ -34,8 +34,7 @@
   }
 
   const defaults = {
-    concurrency: Infinity,
-    autoStart: true
+    concurrency: Infinity
   };
   class AsyncQueue {
     constructor(options) {
@@ -48,7 +47,7 @@
 
     add(task) {
       return new Promise((resolve, reject) => {
-        // buil task and enqueue
+        // build task and enqueue
         const runTask = this._buildTask(task, resolve, reject);
 
         this._queue.enqueue(runTask);
@@ -63,11 +62,15 @@
       const runTask = () => {
         this._pendingCount++;
 
+        const done = this._taskComplete(resolve);
+
+        const fail = this._taskComplete(reject);
+
         try {
           const ret = task();
-          Promise.resolve(ret).then(this._taskComplete(resolve), this._taskComplete(reject));
+          Promise.resolve(ret).then(done, fail);
         } catch (err) {
-          this._taskComplete(reject)(err);
+          fail(err);
         }
       };
 

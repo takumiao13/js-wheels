@@ -25,6 +25,7 @@ Reinventing some javascript wheels, just for studying :)
 - [querystring](https://github.com/takumiao13/js-wheels/tree/master/packages/querystring) - Parsing and formatting URL query strings for Browser.
 - [JST](https://github.com/takumiao13/js-wheels/tree/master/packages/jst) - A JavaScript template engine.
 - [ajax](https://github.com/takumiao13/js-wheels/tree/master/packages/ajax) - JS API for handleing XHR.
+- [fetch-extra](https://github.com/takumiao13/js-wheels/tree/master/packages/fetch-extra) - Simple extend of `window.fetch`
 - [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 - [cookies](https://github.com/takumiao13/js-wheels/tree/master/packages/cookies) - JS API for handling cookies.
 - [Storage](https://github.com/takumiao13/js-wheels/tree/master/packages/storage) - A better `localStorage`.

@@ -17,6 +17,7 @@ Reinventing some javascript wheels, just for studying :)
 - [HTMLParser](https://github.com/takumiao13/js-wheels/tree/master/packages/htmlparser) - A simple HTML Parser.
 - [observable](https://github.com/takumiao13/js-wheels/tree/master/packages/observable) - Observe the changes of object.
 - [redux](https://github.com/takumiao13/js-wheels/tree/master/packages/redux) - A simple redux.
+- [react-redux](https://github.com/takumiao13/js-wheels/tree/master/packages/react-redux) - A simple react-redux.
 - [rxjs](https://github.com/takumiao13/js-wheels/tree/master/packages/rxjs) - A simple rxjs.
 - [amd](https://github.com/takumiao13/js-wheels/tree/master/packages/amd) - A simple AMD implementation for all bundled js.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.

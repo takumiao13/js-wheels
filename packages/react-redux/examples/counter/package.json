@@ -18,6 +18,9 @@
     "redux": "^4.0.5"
   },
   "alias": {
-    "my-redux": "../../../../redux/src/index.js"
+    "react": "./node_modules/react/index.js",
+    "react-dom": "./node_modules/react-dom/index.js",
+    "my-redux": "../../../redux/src/index.js",
+    "my-react-redux": "../../src/7.x/index.js"
   }
 }

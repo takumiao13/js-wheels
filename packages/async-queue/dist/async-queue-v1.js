@@ -38,10 +38,9 @@
   };
   class AsyncQueue {
     constructor(options) {
-      this._handlingCount = 0;
+      this.options = Object.assign({}, defaults, options);
       this._pendingCount = 0;
       this._queue = new Queue();
-      this.options = Object.assign({}, defaults, options);
       this._concurrency = this.options.concurrency;
     }
 
@@ -52,7 +51,7 @@
 
         this._queue.enqueue(runTask);
 
-        if (this._handlingCount < this._concurrency) {
+        if (this._pendingCount < this._concurrency) {
           this._next();
         }
       });
@@ -80,7 +79,6 @@
     _taskComplete(settle) {
       const complete = result => {
         this._pendingCount--;
-        this._handlingCount--;
         settle(result);
 
         if (this._queue.size()) {
@@ -94,7 +92,6 @@
     _next() {
       const runTask = this._queue.dequeue();
 
-      this._handlingCount++;
       runTask();
     }
 

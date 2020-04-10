@@ -16,10 +16,10 @@ asyncQueue.add(() => delay(1000))
   .then(() => console.log('done 1'))
 
 asyncQueue.add(() => delayCatch(1000))
-  .catch(() => console.log('done 2'))
+  .catch(() => console.log('fail 2'))
 
 asyncQueue.add(() => delay(1000))
   .then(() => console.log('done 3'))
   
 asyncQueue.add(() => delayCatch(1000))
-  .catch(() => console.log('done 4'))
+  .catch(() => console.log('fail 4'))

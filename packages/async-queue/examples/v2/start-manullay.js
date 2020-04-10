@@ -16,3 +16,5 @@ asyncQueue.add(() => delay(1000)).then(() => 3).then(console.log);
 setTimeout(_ => {
   asyncQueue.start();
 }, 2000);
+
+console.log('wait 2s <--------------')

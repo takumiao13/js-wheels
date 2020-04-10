@@ -1,19 +1,31 @@
 import { Queue } from './queue';
 
+const noop = () => {}
+
+export const Schedulers = {
+  QUEUE: Symbol('queue'),
+  ASYNC: Symbol('async')
+}
+
 const defaults = {
   concurrency: Infinity,
-  autoStart: true
+  autoStart: true,
+  scheduler: Schedulers.ASYNC,
+  onEmpty: noop,
+  onCompleted: noop
 };
 
 export class AsyncQueue {
   constructor(options) {
     const o = this.options = Object.assign({}, defaults, options);
-    this._handlingCount = 0; // to control concurrency
-    this._pendingCount = 0; // count pending promise task
+    this._pendingCount = 0; // to control concurrency
     this._queue = new Queue(); // store wrapped task
+    this._paused = !o.autoStart;
 
     this._concurrency = o.concurrency;
-    this._paused = !o.autoStart;
+    this._onEmpty = o.onEmpty;
+    this._onCompleted = o.onCompleted;
+    this._scheduler = o.scheduler;
   }
 
   add(task) {
@@ -24,7 +36,7 @@ export class AsyncQueue {
 
       // when no-paused and count is less then concurrency
       // call next to invoke task
-      if (!this._paused && this._handlingCount < this._concurrency) {
+      if (!this._paused && this._pendingCount < this._concurrency) {
         this._next();
       }
     })
@@ -32,7 +44,11 @@ export class AsyncQueue {
 
   _buildTask(task, resolve, reject) {
     const runTask = () => {
-      this._pendingCount++;
+      this._pendingCount++; // increase pending count
+
+      if (!this._queue.size()) {
+        this._onEmpty();
+      }
 
       const done = this._taskComplete(resolve);
       const fail = this._taskComplete(reject); 
@@ -51,12 +67,24 @@ export class AsyncQueue {
   _taskComplete(settle) {
     const complete = (result) => {
       this._pendingCount--;
-      this._handlingCount--;
-      
+      // fulfill or reject the promise that add method return
       settle(result);
 
+      // when queue is not empty
+      // run task in next macro task 
       if (this._queue.size()) {
-        this._next();
+        if (this._scheduler === Schedulers.ASYNC) {
+          setTimeout(_ => this._next());
+        } else {
+          this._next();
+        }
+      // emit `onCompleted` when all task has done
+      } else {
+        if (this._scheduler === Schedulers.ASYNC) {
+          setTimeout(_ => this._onCompleted());
+        } else {
+          this._onCompleted();
+        }
       }
     }
 
@@ -64,8 +92,11 @@ export class AsyncQueue {
   }
 
   _next() {
+    // check queue is paused
+    if (this._paused) return;
+    
+    // dequeue task and run it
     const runTask = this._queue.dequeue();
-    this._handlingCount++;
     runTask();
   }
 
@@ -74,9 +105,13 @@ export class AsyncQueue {
     if (!this._paused) return;
     this._paused = false;
 
-    while(this._handlingCount < this._concurrency) {
+    while(this._pendingCount < this._concurrency) {
       this._next();
     }
+  }
+
+  pause() {
+    this._paused = true;
   }
 
   size() {

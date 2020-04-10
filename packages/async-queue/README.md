@@ -73,6 +73,7 @@ output
 new AsyncQueue({
   concurrency = Infinity: Number;
   autoStart = false: Boolean;
+  scheduler = Scheduler.ASYNC: Scheduler.ASYNC | Scheduler.QUEUE;
 })
 
 AsyncQueue.prototype.add(() => Promise<any>): Promise<any>
@@ -81,6 +82,42 @@ AsyncQueue.prototype.size(): Number
 
 AsyncQueue.prototype.start(): void 0
 ```
+
+
+### Scheduler
+```js
+const p = asyncQueue.add(task);
+p.then(x)
+p.then(x)
+p.then(x)
+
+const p2 = asyncQueue.add(task2);
+p2.then(x2)
+p2.then(x2)
+p2.then(x2)
+```
+
+```
+Scheduler.ASYNC
+
+       next ->
+  task -------- task -------- task -------- task ------ (onCompleted)
+   |            |             |             |
+   x —— x —— x  x —— x —— x   x —— x —— x   x —— x —— x
+
+
+Scheduler.QUEUE
+      
+       next ->
+  task -------- task -------- task -------- task (onCompleted)
+   |            |             |             |   
+   x            x             x             x
+   |            |             |             |
+   x            x             x             x
+```
+
+- when `Scheduler.ASYNC`, next task will call after all promise has done.
+- and `Scheduler.QUEUE`, next task will call immediately after prev task done.
 
 
 ## Reference

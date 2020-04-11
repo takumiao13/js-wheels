@@ -1,0 +1,12 @@
+{
+  "name": "mobx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "rollup -c --watch",
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "MIT"
+}

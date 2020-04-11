@@ -23,10 +23,13 @@
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "jest": "^25.3.0",
+    "parcel": "^1.12.4",
     "promises-aplus-tests": "^2.1.2",
     "rollup-plugin-babel": "^4.4.0"
   },
   "dependencies": {
-    "path-to-regexp": "^6.1.0"
+    "path-to-regexp": "^6.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

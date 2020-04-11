@@ -1,0 +1,26 @@
+{
+  "name": "counter",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^5.1.2",
+    "redux": "^4.0.5"
+  },
+  "alias": {
+    "react": "./node_modules/react/index.js",
+    "react-dom": "./node_modules/react-dom/index.js",
+    "my-redux": "../../../redux/src/index.js",
+    "my-react-redux": "../../src/7.x/index.js"
+  }
+}

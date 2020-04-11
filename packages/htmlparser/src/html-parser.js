@@ -72,6 +72,10 @@ HTMLParser.prototype.parse = function(html) {
       this.parseText(text);
     }
   }
+
+  if (this.handler.onEnd) {
+    this.handler.onEnd();
+  }
 }
 
 HTMLParser.prototype.parseComment = function(comment) {
@@ -81,9 +85,9 @@ HTMLParser.prototype.parseComment = function(comment) {
 }
 
 HTMLParser.prototype.parseStartTag = function(tagName, rest) {
-  if (this.handler.onStart) {
+  if (this.handler.onStartTag) {
     var attrs = this.parseAttrs(tagName, rest);
-	  this.handler.onStart(tagName, attrs);
+	  this.handler.onStartTag(tagName, attrs);
   }
 }
 
@@ -106,8 +110,8 @@ HTMLParser.prototype.parseAttr = function(match, name) {
 }
 
 HTMLParser.prototype.parseEndTag = function(tagName) {
-  if (this.handler.onEnd) {
-    this.handler.onEnd(tagName);
+  if (this.handler.onEndTag) {
+    this.handler.onEndTag(tagName);
   }
 }
 

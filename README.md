@@ -32,6 +32,7 @@ Reinventing some javascript wheels, just for studying :)
 - [jsonp](https://github.com/takumiao13/js-wheels/tree/master/packages/jsonp) - A JSONP implementation.
 
 ### others
+- [timer](https://github.com/takumiao13/js-wheels/tree/master/packages/timer) - A better interval.
 - [querystring](https://github.com/takumiao13/js-wheels/tree/master/packages/querystring) - Parsing and formatting URL query strings for Browser.
 - [amd](https://github.com/takumiao13/js-wheels/tree/master/packages/amd) - A simple AMD implementation for all bundled js.
 - [createError](https://github.com/takumiao13/js-wheels/tree/master/packages/create-error) - Create custom error.
